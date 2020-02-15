@@ -8,11 +8,22 @@ state = {
     {name: 'mouni', age: 27},
     {name: 'rajee', age: 31},
     {name: 'rajmo', age: 1}
-  ]
+  ],
+  tryNew: 'ok'
 }
 
 switchNameHandler = () => {
-  console.log('was clicked');
+  //console.log('was clicked');
+  //this.state.person[0].name = 'mounika kalluri';
+  //dont mutate state directly
+  this.setState({
+    person: [
+      {name: 'mounika kalluri', age: 28},
+      {name: 'rajee', age: 31},
+      {name: 'rajmo', age: 1}
+    ]
+  })
+
 }
 
   render() {
