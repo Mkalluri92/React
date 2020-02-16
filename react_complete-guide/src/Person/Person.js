@@ -1,11 +1,12 @@
 import React from 'react';
+import './Person.css';
 
 //here no need of importing component as we rae not using any class which extends component
 
 
 const person = (props) => {
   return (
-    <div>
+    <div className="Person"> 
       <p onClick= {props.click} >I'am {props.name} and I am {props.age} years old!</p> 
       <p>{props.children}</p>
       <input type='text' onChange= {props.changed} value= {props.name}></input>
