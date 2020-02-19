@@ -1,3 +1,5 @@
+/*
+
 .Person {
     width: 60%;
     margin: 16px auto;
@@ -8,10 +10,11 @@
 }
 
 
-/*
+
 @media (min-width: 500px) {
     .person {
         width: 450px;
     }
 }
+
 */
