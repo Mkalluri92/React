@@ -15,6 +15,12 @@ const person = (props) => {
   }
   */
 
+  const rnd = Math.random();
+
+  if(rnd > 0.7) {
+    throw new Error('SomeThing went wrong');
+  }
+
   
   return (
     //<div className="Person" style= {style}> 
