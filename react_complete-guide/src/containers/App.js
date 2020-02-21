@@ -1,24 +1,9 @@
 import React, { Component } from 'react';
 import classes from './App.css';
-import Person from '../components/Persons/Person/Person';
-import ErrorBoundary from '../ErrorBoundary/ErrorBoundary'
-//import styled from 'styled-components';
+import Persons from '../components/Persons/Persons';
+import Cockpit from '../components/Cockpit/Cockpit';
 
 
-/*
-const StyleButton = styled.button`
-  background-color: ${props => props.alt ? 'red' : 'green'};
-  color: white;
-  font: inherit;
-  border: 1px solid blue;
-  padding: 8px;
-  cursor: pointer;
-  &:hover {
-    background-color: ${props => props.alt ? 'salmon' : 'lightgreen'};
-    color: black;
-}
-`;
-*/
 
 class App extends Component {
   state = {
@@ -64,70 +49,27 @@ class App extends Component {
 
   render() {
 
-    /*
-    const style = {
-      backgroundColor: 'green',
-      color: 'white',
-      font: 'inherit',
-      border: '1px solid blue',
-      padding: '8px',
-      cursor: 'pointer',
-      ':hover': {
-        backgroundColor: 'lightgreen',
-        color: 'black'
-      }
-    }
-    */
-
-    let btnClass = '';
 
     let persons = null;
 
     if(this.state.showPersons) {
       persons = (
-        <div>
-          {this.state.person.map((eachPerson, index) => {
-            return <ErrorBoundary key={eachPerson.id}>
-              <Person
-                click={() => this.deletePersonHandler(index)} 
-                name={eachPerson.name} 
-                age={eachPerson.age}
-                changed={(event) => this.nameChangeHandler(event, eachPerson.id)}/>
-              </ErrorBoundary>
-          })}
-        </div>
+          <Persons 
+            clicked={this.deletePersonHandler} 
+            changed={this.nameChangeHandler}
+            persons={this.state.person}/>
       );
-
-      /*
-      style.backgroundColor = 'red';
-      style[':hover'] = {
-        backgroundColor: 'salmon',
-        color: 'balck'
-      }
-      */
-
-      btnClass = classes.Red;
-
     }
 
-    let assignedClasses = [];
-
-    if (this.state.person.length <= 2) {
-      assignedClasses.push(classes.red); //classes = ['red']
-    } 
-
-    if (this.state.person.length <= 1) {
-      assignedClasses.push(classes.bold); //classes = [red, bold]
-    }
+    
 
     return (
-     
         <div className={classes.App}>
-          <h1>Hi, I'm a React</h1>
-          <p className= {assignedClasses.join(' ')}>This is working</p>
-          <button className={btnClass} onClick={this.togglePersonsHandler}>
-              Toggle persons
-          </button>
+          <Cockpit 
+            showPersons = {this.state.showPersons}
+            persons = {this.state.person}
+            clicked= {this.togglePersonsHandler}>
+          </Cockpit>
           {persons}
         </div>
      
@@ -136,50 +78,4 @@ class App extends Component {
   };
 }
 
-
-/*
-
-const app = (props) => {
-
-  const [ this.state, setthis.state] = useState({
-    person: [
-      {name: 'mouni', age: 27},
-      {name: 'rajee', age: 31},
-      {name: 'rajmo', age: 1}
-    ]
-  });
-  
-  const [ otherState, othersState] = useState('other state');
-  console.log(this.state, otherState);
-
-  //console.log(setthis.state);
-
-  const switchNameHandler = () => {
-    //console.log('was clicked');
-    //this.state.person[0].name = 'mounika kalluri';
-    //dont mutate state directly
-    setthis.state({
-      person: [
-        {name: 'mounika kalluri', age: 28},
-        {name: 'rajee', age: 31},
-        {name: 'rajmo', age: 1}
-      ],
-      tryNew: 'ok'
-    })
-  
-  }
-  return (
-    <div className="App">
-      <h1>Hi, I'm a React</h1>
-      <h1>This is working</h1>
-      <button onClick={switchNameHandler}>Switch Name</button>
-      <Person name={this.state.person[0].name} age={this.state.person[0].age}/>
-      <Person name={this.state.person[1].name} age={this.state.person[1].age}>My Hobbies: Video Games</Person>
-      <Person name={this.state.person[2].name} age={this.state.person[2].age}/>
-    </div>
-  );
-  //return React.createElement('div', {className: 'App'}, React.createElement('h1', null, 'Hi, I\'m a React' ) )
-} 
-
-*/
 export default App;
