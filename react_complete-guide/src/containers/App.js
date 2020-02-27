@@ -6,6 +6,12 @@ import Cockpit from '../components/Cockpit/Cockpit';
 
 
 class App extends Component {
+  constructor(props){
+    super(props);
+    console.log('[App.js] constructor');
+    //in previous js we need to intialise the state here in constructor
+    //as result of modern js we need do as below outsode the construtor
+  }
   state = {
     person: [
       {id: 'as', name: 'mouni', age: 27},
@@ -15,6 +21,36 @@ class App extends Component {
     otherState: 'other one',
     showPersons: false
   };
+
+
+
+
+  static  getDerivedStateFromProps(props, state) {
+    console.log('[App.js] getDeviedStateFromProps', props);
+    return state;
+  }
+
+
+ /*
+  componentWillMount() {
+    console.log('[App.js] component will mount');
+  }
+  */
+  
+
+  componentDidMount() {
+    console.log('[App.js] component did mount');
+  }
+
+  shouldComponentUpdate(nextProps, nextState) {
+    console.log('[App.js] shouldComponentUpdate');
+    return true;
+  }
+
+  componentDidUpdate() {
+    console.log('[App.js] componentDidUpdate');
+  }
+
   
   togglePersonsHandler = () => {
     const doesShow = this.state.showPersons
@@ -24,8 +60,6 @@ class App extends Component {
   }
 
   deletePersonHandler = personIndex => {
-    //debugger
-    //const persons = this.state.person.slice();
     const persons = [...this.state.person]
     persons.splice(personIndex, 1);
     this.setState({person: persons})
@@ -49,19 +83,16 @@ class App extends Component {
 
   render() {
 
+     console.log('[App.js] render');
 
     let persons = null;
 
     if(this.state.showPersons) {
-      persons = (
-          <Persons 
+      persons = <Persons 
             clicked={this.deletePersonHandler} 
             changed={this.nameChangeHandler}
-            persons={this.state.person}/>
-      );
+            persons={this.state.person}/>;
     }
-
-    
 
     return (
         <div className={classes.App}>
@@ -73,9 +104,7 @@ class App extends Component {
           </Cockpit>
           {persons}
         </div>
-     
-      
-    )
+      )
   };
 }
 
