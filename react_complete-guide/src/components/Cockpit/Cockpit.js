@@ -3,6 +3,12 @@ import classes from './Cockpit.css';
 
 const cockpit = (props) => {
 
+    useEffect( () => {
+        console.log('[cockpit.js] useEffect');
+        //combines both componentDidMount and DidUpdate
+        //you can make http request here
+    })
+
     let assignedClasses = [];
     let btnclass = '';
 
