@@ -1,23 +1,24 @@
 import React, { Component } from 'react';
 import classes from './Person.css';
+import Aux from '../../../hoc/aux';
 
 
 class Person extends Component {
   render(){
     console.log('[person.js] rendering');
-      return [
-         
-          <p key={"i1"} onClick= {this.props.click} >
+      return (
+        <Aux>
+          <p onClick= {this.props.click} >
             I'am {this.props.name} and I am {this.props.age} years old!
-          </p>,
-          <p key={"i2"}>{this.props.children}</p>,
+          </p>
+          <p key={"i2"}>{this.props.children}</p>
           <input key={"i3"}
             type='text' 
             onChange= {this.props.changed} 
             value= {this.props.name}>
           </input>
-
-      ]
+        </Aux>
+      )
   }
 }
 
