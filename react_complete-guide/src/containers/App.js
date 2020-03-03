@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 import classes from './App.css';
 import Persons from '../components/Persons/Persons';
 import Cockpit from '../components/Cockpit/Cockpit';
-import WithClass from '../hoc/withClass';
+import withClass from '../hoc/withClass';
+import Aux from '../hoc/aux';
 
 
 
@@ -97,7 +98,7 @@ class App extends Component {
     }
 
     return (
-        <WithClass classes={classes.App}>
+        <Aux>
           <button onClick = {() => {
             const show = this.state.cockpitShow
             this.setState({cockpitShow: !show})
@@ -110,9 +111,9 @@ class App extends Component {
             clicked= {this.togglePersonsHandler}>
           </Cockpit> : null }
           {persons}
-        </WithClass>
+        </Aux>
       )
   };
 }
 
-export default App;
+export default withClass(App, classes.App);
