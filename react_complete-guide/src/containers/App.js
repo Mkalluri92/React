@@ -22,7 +22,8 @@ class App extends Component {
     ],
     otherState: 'other one',
     showPersons: false,
-    cockpitShow: true
+    cockpitShow: true,
+    changeCounter: 0
   };
 
 
@@ -81,7 +82,12 @@ class App extends Component {
     const persons = [...this.state.person];
     persons[personIndex] = person;
 
-    this.setState({person: persons})
+    this.setState((prevState, props) => {
+      return {person: persons,
+              changeCounter: prevState.changeCounter + 1};
+    })
+      
+    
   }
 
   render() {
