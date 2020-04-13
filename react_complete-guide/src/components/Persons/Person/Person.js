@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import classes from './Person.css';
 import Aux from '../../../hoc/aux';
 import withClass from '../../../hoc/withClass';
-import { ThemeConsumer } from 'styled-components';
+import AuthContext from '../../../context/auth-context';
 
 
 class Person extends Component {
@@ -16,12 +16,20 @@ class Person extends Component {
   componentDidMount() {
     //this.inputElement.focus();
     this.elementValRef.current.focus();
+    console.log(this.context.authenticated);
   }
+ 
+  static contextType = AuthContext;
 
   render(){
     console.log('[person.js] rendering');
       return (
         <Aux>
+          
+          {this.context.authenticated? 
+          <p>Authenticated</p>: <p>Please Login in</p>
+          }
+          
           <p onClick= {this.props.click} >
             I'am {this.props.name} and I am {this.props.age} years old!
           </p>
